@@ -51,13 +51,13 @@
         </div>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script>        
-        	// Variable to hold request
+
 var request;
 
-// Bind to the submit event of our form
+
 $("#form1").submit(function(event){
 
-    // Abort any pending request
+
     if (request) {
         request.abort();
     }
@@ -109,6 +109,8 @@ $("#form1").submit(function(event){
 
     // Prevent default posting of form
     event.preventDefault();
+    
+    $('input').val('');
 });
         </script>
     </body>
