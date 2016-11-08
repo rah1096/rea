@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Cover Template for Bootstrap</title>
+        <!-- Custom styles for this template -->
+        <link href="styles.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	  
+    <![endif]-->
+    </head>
+    <body>
+        <div id="container1">
+            <div class="site-wrapper-inner">
+                <div id="container">
+                    <div id="title-area">
+                        <h1 id="title1">What's My House Worth?</h1>
+                    </div>
+                    <div class="cover-container">
+                        <div class="inner cover">
+                            <form role="form" id="form1">
+                                <div class="form-title">
+                                    <h3>
+            Enter Your Information And Click The Button Below To Get Started</h3>
+                                </div>                                 
+                                <div class="form-group"> 
+                                    <input type="text" class="form-control" id="firstName" placeholder="First Name" name="First Name"> 
+                                </div>
+                                <div class="form-group"> 
+                                    <input type="text" class="form-control" id="lastName" placeholder="Last Name" name="Last Name"> 
+                                </div>                                 
+                                <div class="form-group"> 
+                                    <input type="email" class="form-control" id="email" placeholder="E-Mail" name="Email"> 
+                                </div>
+                                <div class="form-group"> 
+                                    <input type="number" class="form-control" id="phoneNumber" placeholder="Phone Number" name="Phone Number"> 
+                                </div>                                 
+                                <button type="submit" class="btn">Get Started Here >>></button>                                 
+                            </form>
+                        </div>
+                    </div>
+                </div>                 
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script>        
+        	// Variable to hold request
+var request;
+
+// Bind to the submit event of our form
+$("#form1").submit(function(event){
+
+    // Abort any pending request
+    if (request) {
+        request.abort();
+    }
+    // setup some local variables
+    var $form = $(this);
+
+    // Let's select and cache all the fields
+    var $inputs = $form.find("input, select, button, textarea");
+
+    // Serialize the data in the form
+    var serializedData = $form.serialize();
+
+    // Let's disable the inputs for the duration of the Ajax request.
+    // Note: we disable elements AFTER the form data has been serialized.
+    // Disabled form elements will not be serialized.
+    $inputs.prop("disabled", true);
+
+    // Fire off the request to /form.php
+    request = $.ajax({
+        url: "https://script.google.com/macros/s/AKfycbzpE6Mfm_PDk4n31nm2kJsFOpZDZW2vFL2YVMVt12zeyXmj-VMg/exec",
+        type: "post",
+        data: serializedData
+    });
+
+    // Callback handler that will be called on success
+    request.done(function (response, textStatus, jqXHR){
+        // Log a message to the console
+        console.log("Hooray, it worked!");
+        console.log(response);
+        console.log(textStatus);
+        console.log(jqXHR);
+    });
+
+    // Callback handler that will be called on failure
+    request.fail(function (jqXHR, textStatus, errorThrown){
+        // Log the error to the console
+        console.error(
+            "The following error occurred: "+
+            textStatus, errorThrown
+        );
+    });
+
+    // Callback handler that will be called regardless
+    // if the request failed or succeeded
+    request.always(function () {
+        // Reenable the inputs
+        $inputs.prop("disabled", false);
+    });
+
+    // Prevent default posting of form
+    event.preventDefault();
+});
+        </script>
+    </body>
+</html>
